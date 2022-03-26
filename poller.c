@@ -55,7 +55,24 @@ do {\
 
 /* Pause current coroutine for a specified time interval. */
 void mill_msleep_(int64_t deadline, const char *current) {
-    mill_fdwait_(-1, 0, deadline, current);
+    check_poller_initialised();
+    /* If required, start waiting for the timeout. */
+    if(deadline >= 0)
+        mill_timer_add(&mill_running->timer, deadline, mill_poller_callback);
+    /* Do actual waiting. */
+    mill_running->state = MILL_MSLEEP;
+    mill_running->fd = -1;
+    mill_running->events = 0;
+    mill_set_current(&mill_running->debug, current);
+    int rc = mill_suspend();
+    /* Handle file descriptor events. */
+    if(rc >= 0) {
+        mill_assert(!mill_timer_enabled(&mill_running->timer));
+        return rc;
+    }
+    /* Handle the timeout. */
+    mill_assert(mill_running->fd == -1);
+    return 0;
 }
 
 static void mill_poller_callback(struct mill_timer *timer) {
