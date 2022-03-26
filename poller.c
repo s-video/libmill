@@ -53,6 +53,13 @@ do {\
     }\
 } while(0)
 
+static void mill_poller_callback(struct mill_timer *timer) {
+    struct mill_cr *cr = mill_cont(timer, struct mill_cr, timer);
+    mill_resume(cr, -1);
+    if (cr->fd != -1)
+        mill_poller_rm(cr);
+}
+
 /* Pause current coroutine for a specified time interval. */
 void mill_msleep_(int64_t deadline, const char *current) {
     check_poller_initialised();
@@ -68,18 +75,11 @@ void mill_msleep_(int64_t deadline, const char *current) {
     /* Handle file descriptor events. */
     if(rc >= 0) {
         mill_assert(!mill_timer_enabled(&mill_running->timer));
-        return rc;
+        return;
     }
     /* Handle the timeout. */
     mill_assert(mill_running->fd == -1);
-    return 0;
-}
-
-static void mill_poller_callback(struct mill_timer *timer) {
-    struct mill_cr *cr = mill_cont(timer, struct mill_cr, timer);
-    mill_resume(cr, -1);
-    if (cr->fd != -1)
-        mill_poller_rm(cr);
+    return;
 }
 
 int mill_fdwait_(int fd, int events, int64_t deadline, const char *current) {
