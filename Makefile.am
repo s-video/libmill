@@ -52,7 +52,6 @@ libmill_la_SOURCES = \
     timer.h \
     timer.c \
     udp.c \
-    unix.c \
     utils.h \
     poll.inc \
     epoll.inc \
