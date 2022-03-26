@@ -87,7 +87,7 @@ check_PROGRAMS = \
     tests/chan\
     tests/choose\
     tests/sleep\
-    tests/overload\
+    tests/overload
 
 LDADD = libmill.la
 
@@ -143,7 +143,7 @@ dist-hook:
 	fi; \
 	$(srcdir)/package_version.sh > $(distdir)/.version
 
-EXTRA_DIST += \
+EXTRA_DIST = \
     ./abi_version.sh \
     ./package_version.sh \
     ./CMakeLists.txt
