@@ -103,8 +103,7 @@ noinst_PROGRAMS += \
     perf/chan\
     perf/chs\
     perf/chr\
-    perf/whispers\
-    perf/c10k
+    perf/whispers
 
 ################################################################################
 #  additional packaging-related stuff                                          #
