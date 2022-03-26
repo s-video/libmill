@@ -107,20 +107,6 @@ noinst_PROGRAMS += \
     perf/c10k
 
 ################################################################################
-#  tutorial                                                                    #
-################################################################################
-
-noinst_PROGRAMS += \
-    tutorial/step1 \
-    tutorial/step2 \
-    tutorial/step3 \
-    tutorial/step4 \
-    tutorial/step5 \
-    tutorial/step6 \
-    tutorial/step7 \
-    tutorial/step8
-
-################################################################################
 #  additional packaging-related stuff                                          #
 ################################################################################
 
