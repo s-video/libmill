@@ -83,27 +83,11 @@ noinst_PROGRAMS =
 
 check_PROGRAMS = \
     tests/example\
-    tests/go\
     tests/cls\
     tests/chan\
     tests/choose\
     tests/sleep\
-    tests/fdwait\
-    tests/tcp\
-    tests/udp\
-    tests/unix\
-    tests/signals\
     tests/overload\
-    tests/ip\
-    tests/file\
-    tests/mfork1\
-    tests/mfork2\
-    tests/mfork3\
-    tests/ssl
-
-EXTRA_DIST = \
-    tests/cert.pem \
-    tests/key.pem
 
 LDADD = libmill.la
 
