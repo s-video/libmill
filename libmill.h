@@ -548,46 +548,6 @@ typedef struct mill_tcpsock_ *tcpsock;
 #endif
 
 /******************************************************************************/
-/*  UDP library                                                               */
-/******************************************************************************/
-
-struct mill_udpsock_;
-
-MILL_EXPORT struct mill_udpsock_ *mill_udplisten_(
-    struct mill_ipaddr addr);
-MILL_EXPORT int mill_udpport_(
-    struct mill_udpsock_ *s);
-MILL_EXPORT void mill_udpsend_(
-    struct mill_udpsock_ *s,
-    struct mill_ipaddr addr,
-    const void *buf,
-    size_t len);
-MILL_EXPORT size_t mill_udprecv_(
-    struct mill_udpsock_ *s,
-    struct mill_ipaddr *addr,
-    void *buf,
-    size_t len,
-    int64_t deadline);
-MILL_EXPORT void mill_udpclose_(
-    struct mill_udpsock_ *s);
-
-#if defined MILL_USE_PREFIX
-typedef struct mill_udpsock_ *mill_udpsock;
-#define mill_udplisten mill_udplisten_
-#define mill_udpport mill_udpport_
-#define mill_udpsend mill_udpsend_
-#define mill_udprecv mill_udprecv_
-#define mill_udpclose mill_udpclose_
-#else
-typedef struct mill_udpsock_ *udpsock;
-#define udplisten mill_udplisten_
-#define udpport mill_udpport_
-#define udpsend mill_udpsend_
-#define udprecv mill_udprecv_
-#define udpclose mill_udpclose_
-#endif
-
-/******************************************************************************/
 /*  File library                                                              */
 /******************************************************************************/
 
