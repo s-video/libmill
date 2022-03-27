@@ -113,19 +113,4 @@ void mill_wait(int block) {
 }
 
 /* Include the poll-mechanism-specific stuff. */
-
-/* User overloads. */
-#if defined MILL_EPOLL
-#include "epoll.inc"
-#elif defined MILL_KQUEUE
-#include "kqueue.inc"
-#elif defined MILL_POLL
 #include "poll.inc"
-/* Defaults. */
-#elif defined __linux__ && !defined MILL_NO_EPOLL
-#include "epoll.inc"
-#elif (defined BSD || defined __APPLE__) && !defined MILL_NO_KQUEUE
-#include "kqueue.inc"
-#else
-#include "poll.inc"
-#endif

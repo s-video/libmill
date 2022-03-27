@@ -49,9 +49,7 @@ libmill_la_SOURCES = \
     timer.h \
     timer.c \
     utils.h \
-    poll.inc \
-    epoll.inc \
-    kqueue.inc
+    poll.inc
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libmill.pc
