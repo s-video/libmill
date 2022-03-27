@@ -89,7 +89,7 @@ static void *mill_getvalbuf(struct mill_cr *cr, size_t size) {
 void mill_goprepare_(int count, size_t stack_size, size_t val_size) {
     if(mill_slow(mill_hascrs())) {errno = EAGAIN; return;}
     /* Allocate any resources needed by the polling mechanism. */
-    mill_poller_init();
+    errno = 0;
     if(mill_slow(errno != 0)) return;
     /* If needed, make val size slightly bigger to align properly. */
     mill_valbuf_size = (val_size + 15) & ~((size_t)0xf);

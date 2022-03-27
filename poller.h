@@ -35,9 +35,5 @@ void mill_poller_init(void);
    it will block until there's at least one event to process. */
 void mill_wait(int block);
 
-/* Called in the child process after fork to create a fresh new pollset
-   independent from the parent's pollset. */
-void mill_poller_postfork(void);
-
 #endif
 
