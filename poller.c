@@ -76,31 +76,6 @@ void mill_msleep_(int64_t deadline, const char *current) {
     return;
 }
 
-int mill_fdwait_(int fd, int events, int64_t deadline, const char *current) {
-    check_poller_initialised();
-    /* If required, start waiting for the timeout. */
-    if(deadline >= 0)
-        mill_timer_add(&mill_running->timer, deadline, mill_poller_callback);
-    /* Do actual waiting. */
-    mill_running->state = fd < 0 ? MILL_MSLEEP : MILL_FDWAIT;
-    mill_running->fd = fd;
-    mill_running->events = events;
-    mill_set_current(&mill_running->debug, current);
-    int rc = mill_suspend();
-    /* Handle file descriptor events. */
-    if(rc >= 0) {
-        mill_assert(!mill_timer_enabled(&mill_running->timer));
-        return rc;
-    }
-    /* Handle the timeout. */
-    mill_assert(mill_running->fd == -1);
-    return 0;
-}
-
-void mill_fdclean_(int fd) {
-    check_poller_initialised();
-}
-
 void mill_wait(int block) {
     check_poller_initialised();
     while(1) {

@@ -140,11 +140,6 @@ MILL_EXPORT void mill_yield_(
 MILL_EXPORT void mill_msleep_(
     int64_t deadline,
     const char *current);
-MILL_EXPORT int mill_fdwait_(
-    int fd,
-    int events,
-    int64_t deadline,
-    const char *current);
 MILL_EXPORT void mill_fdclean_(
     int fd);
 MILL_EXPORT void *mill_cls_(
@@ -231,7 +226,6 @@ MILL_EXPORT void mill_setcls_(
 #define mill_goprepare mill_goprepare_
 #define mill_yield() mill_yield_(MILL_HERE_)
 #define mill_msleep(dd) mill_msleep_((dd), MILL_HERE_)
-#define mill_fdwait(fd, ev, dd) mill_fdwait_((fd), (ev), (dd), MILL_HERE_)
 #define mill_fdclean mill_fdclean_
 #define mill_cls mill_cls_
 #define mill_setcls mill_setcls_
@@ -244,7 +238,6 @@ MILL_EXPORT void mill_setcls_(
 #define goprepare mill_goprepare_
 #define yield() mill_yield_(MILL_HERE_)
 #define msleep(deadline) mill_msleep_((deadline), MILL_HERE_)
-#define fdwait(fd, ev, dd) mill_fdwait_((fd), (ev), (dd), MILL_HERE_)
 #define fdclean mill_fdclean_
 #define cls mill_cls_
 #define setcls mill_setcls_

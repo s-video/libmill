@@ -25,8 +25,6 @@
 #ifndef MILL_POLLER_INCLUDED
 #define MILL_POLLER_INCLUDED
 
-void mill_poller_init(void);
-
 /* poller.c also implements mill_wait() and mill_fdwait() declared
    in libmill.h. */
 
