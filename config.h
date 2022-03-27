@@ -1,0 +1,2 @@
+#define HAVE_POSIX_MEMALIGN 1
+#define HAVE_MPROTECT 1
