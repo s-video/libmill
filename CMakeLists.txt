@@ -9,8 +9,7 @@ if(CMAKE_C_COMPILER_ID EQUAL "Clang" OR CMAKE_C_COMPILER_ID EQUAL "GNU")
 endif()
 
 # static and shared libs
-file(GLOB sources *.c dns/*.c)
-set_source_files_properties(dns/dns.c PROPERTIES COMPILE_FLAGS -std=c99)
+file(GLOB sources *.c)
 add_library(mill STATIC ${sources})
 add_library(mill_s SHARED ${sources})
 set_target_properties(mill_s PROPERTIES OUTPUT_NAME mill)
