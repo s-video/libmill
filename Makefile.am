@@ -55,8 +55,7 @@ libmill_la_SOURCES = \
     epoll.inc \
     kqueue.inc \
     dns/dns.h \
-    dns/dns.c \
-    file.c
+    dns/dns.c
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libmill.pc
